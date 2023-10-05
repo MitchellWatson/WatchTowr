@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "745315008499",
+    "project_id": "watchtowr-b4545",
+    "storage_bucket": "watchtowr-b4545.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:745315008499:android:cd2d980a563d5ea2d05c86",
+        "android_client_info": {
+          "package_name": "com.example.zenfeat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbNdiLboDkyWoNYp_JR5kph6iKaTjGalo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
