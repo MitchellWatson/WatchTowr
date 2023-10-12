@@ -109,6 +109,17 @@ public class SignUp extends AppCompatActivity {
                                             @Override
                                             public void onSuccess(Void aVoid) {
                                                 Toast.makeText(getApplicationContext(),"success",Toast.LENGTH_LONG).show();
+
+                                                Intent intent = new Intent(SignUp.this, Home.class);
+                                                Bundle bundle = new Bundle();
+                                                bundle.putString("first", firstname);
+                                                bundle.putString("last", lastname);
+                                                bundle.putString("age", ageString);
+                                                bundle.putString("occupation", occupationString);
+                                                bundle.putString("email", emailString);
+                                                intent.putExtras(bundle);
+
+                                                startActivity(intent);
                                             }
                                         });
                             } else {

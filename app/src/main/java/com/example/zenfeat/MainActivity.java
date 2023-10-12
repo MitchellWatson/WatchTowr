@@ -11,11 +11,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -64,8 +68,35 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()){
-                        Toast.makeText(getApplicationContext(), "success", Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(MainActivity.this, Home.class));
+
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        String userId = user.getUid();
+                        FirebaseFirestore db = FirebaseFirestore.getInstance();
+                        DocumentReference userRef = db.collection("users").document(userId);
+
+                        Bundle bundle = new Bundle();
+
+                        userRef.get()
+                                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                    @Override
+                                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                        if (documentSnapshot.exists()) {
+                                            // The document exists; you can access its data
+                                            User user = documentSnapshot.toObject(User.class);
+                                                // Access user properties
+                                            bundle.putString("first", user.getFirstName());
+                                            bundle.putString("last", user.getLastName());
+                                            bundle.putString("age", user.getAge());
+                                            bundle.putString("occupation", user.getOccupation());
+                                            bundle.putString("email", user.getEmail());
+                                            bundle.putString("uid", userId);
+                                            startActivity(new Intent(MainActivity.this, Home.class).putExtras(bundle));
+
+                                        }
+                                    }
+                                });
+
+
                     } else {
                         Toast.makeText(getApplicationContext(), "fail", Toast.LENGTH_LONG).show();
                     }
