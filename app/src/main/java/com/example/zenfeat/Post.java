@@ -1,5 +1,8 @@
 package com.example.zenfeat;
 
+import com.google.firebase.Timestamp;
+
+import java.util.Date;
 import java.util.List;
 
 public class Post {
@@ -12,14 +15,14 @@ public class Post {
     private String poster;
     private String occupation;
     private String uid;
-    private String date;
+    private Timestamp date;
     private List<String> usersLiked; // Added usersLiked field
 
     public Post() {
         // Required default constructor for Firestore
     }
 
-    public Post(String company, String description, String position, String location, String url, int reputation, String poster, String occupation, String uid, String date, List<String> usersLiked) {
+    public Post(String company, String description, String position, String location, String url, int reputation, String poster, String occupation, String uid, Timestamp date, List<String> usersLiked) {
         this.company = company;
         this.description = description;
         this.position = position;
@@ -105,11 +108,11 @@ public class Post {
         this.uid = uid;
     }
 
-    public String getDate() {
+    public Timestamp getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Timestamp date) {
         this.date = date;
     }
 

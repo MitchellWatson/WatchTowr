@@ -3,10 +3,22 @@ package com.example.zenfeat;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -58,7 +70,34 @@ public class RecentFrag extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_recent, container, false);
+        View rootview = inflater.inflate(R.layout.fragment_recent, container, false);
+
+        // Initialize Firestore
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        // Initialize the RecyclerView
+        RecyclerView recyclerView = rootview.findViewById(R.id.recentrecycler);
+        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+
+        List<QueryDocumentSnapshot> data = new ArrayList<>();
+
+        Home home = (Home)getActivity();
+
+        PostAdapter adapter = new PostAdapter(data, home.bundle);
+        recyclerView.setAdapter(adapter);
+
+        Query query = db.collection("posts").orderBy("date", Query.Direction.DESCENDING);
+
+        query.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                    data.add(document);
+                }
+                adapter.notifyDataSetChanged();
+            }
+        });
+
+        return rootview;
     }
 }

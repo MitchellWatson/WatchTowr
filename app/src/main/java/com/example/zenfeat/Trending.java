@@ -16,6 +16,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -89,9 +90,9 @@ public class Trending extends Fragment {
         PostAdapter adapter = new PostAdapter(data, home.bundle);
         recyclerView.setAdapter(adapter);
 
-        CollectionReference collection = db.collection("posts");
+        Query query = db.collection("posts").orderBy("reputation", Query.Direction.DESCENDING);
 
-        collection.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        query.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for (QueryDocumentSnapshot document : queryDocumentSnapshots) {

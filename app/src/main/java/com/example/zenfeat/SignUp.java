@@ -117,6 +117,7 @@ public class SignUp extends AppCompatActivity {
                                                 bundle.putString("age", ageString);
                                                 bundle.putString("occupation", occupationString);
                                                 bundle.putString("email", emailString);
+                                                bundle.putString("uid", userId);
                                                 intent.putExtras(bundle);
 
                                                 startActivity(intent);

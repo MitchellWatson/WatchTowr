@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -19,6 +21,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyViewHolder> {
@@ -54,7 +57,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyViewHolder> 
         private TextView reputationTextView;
         private TextView dateTextView;
         private LinearLayout expandedLayout;
-        private Button buttonReputation;
+        private ImageView buttonReputation;
 
         private TextView descriptionTextView;
         private TextView locationTextView;
@@ -95,33 +98,62 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyViewHolder> 
                         public void onSuccess(DocumentSnapshot documentSnapshot) {
                             if (documentSnapshot.exists()) {
                                 Post card = documentSnapshot.toObject(Post.class);
+                                    Toast.makeText(itemView.getContext(), "" + card.getUsersLiked().contains(bundle.getString("uid")), Toast.LENGTH_LONG).show();
+                                    // Check if the current user has already liked the card
+                                    if (!card.getUsersLiked().contains(bundle.getString("uid"))) {
+                                        // User hasn't liked the card, so update the database
+                                        card.getUsersLiked().add(bundle.getString("uid")); // Add user to the "usersLiked" array
+                                        card.setReputation(card.getReputation() + 1); // Increase reputation
 
-                                // Check if the current user has already liked the card
-                                if (!Arrays.asList(card.getUsersLiked()).contains(bundle.getString("uid"))) {
-                                    // User hasn't liked the card, so update the database
-                                    card.getUsersLiked().add(bundle.getString("uid")); // Add user to the "usersLiked" array
-                                    card.setReputation(card.getReputation() + 1); // Increase reputation
+                                        // Update the card document with the new data
+                                        cardRef.set(card).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+                                                // Update the UI to reflect the new reputation count
+                                                int currentReputation = Integer.parseInt(reputationTextView.getText().toString());
+                                                int newReputation = currentReputation + 1;
+                                                reputationTextView.setText(String.valueOf(newReputation)); // Update the UI
 
-                                    // Update the card document with the new data
-                                    cardRef.set(card).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                        @Override
-                                        public void onSuccess(Void aVoid) {
-                                            // Update the UI to reflect the new reputation count
-                                        }
-                                    });
-                                } else {
-                                    // User has already liked the card, provide feedback
-                                }
+                                                ImageView image = itemView.findViewById(R.id.buttonReputation);
+
+                                                image.setImageResource(R.drawable.baseline_arrow_circle_up_24_clicked);
+
+                                                image.setBackgroundResource(R.drawable.gradient);
+
+                                                // Update the Firestore document with the new reputation value
+                                                updateReputationInFirestore(newReputation);
+                                            }
+                                        });
+                                    } else {
+                                        card.getUsersLiked().remove(bundle.getString("uid"));
+                                        card.setReputation(card.getReputation() - 1); // Increase reputation
+
+                                        // Update the card document with the new data
+                                        cardRef.set(card).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+                                                // Update the UI to reflect the new reputation count
+                                                int currentReputation = Integer.parseInt(reputationTextView.getText().toString());
+                                                int newReputation = currentReputation - 1;
+                                                reputationTextView.setText(String.valueOf(newReputation)); // Update the UI
+
+                                                ImageView image = itemView.findViewById(R.id.buttonReputation);
+
+                                                image.setImageResource(R.drawable.baseline_arrow_circle_up_24);
+
+                                                image.setBackgroundResource(R.color.transparent);
+
+                                                // Update the Firestore document with the new reputation value
+                                                updateReputationInFirestore(newReputation);
+                                            }
+                                        });
+                                    }
+
                             }
                         }
                     });
 
-                    int currentReputation = Integer.parseInt(reputationTextView.getText().toString());
-                    int newReputation = currentReputation + 1;
-                    reputationTextView.setText(String.valueOf(newReputation)); // Update the UI
 
-                    // Update the Firestore document with the new reputation value
-                    updateReputationInFirestore(newReputation);
                 }
             });
 
@@ -138,7 +170,21 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyViewHolder> 
             companyTextView.setText(item.getCompany());
             positionTextView.setText(item.getPosition());
             reputationTextView.setText(String.valueOf(item.getReputation()));
-            dateTextView.setText(item.getDate().toString());
+
+            Timestamp newTimestamp = Timestamp.now();
+
+            long secondsTemp = newTimestamp.getSeconds() - item.getDate().getSeconds();
+
+            String formattedDuration = formatDuration(secondsTemp);
+
+            dateTextView.setText(formattedDuration);
+
+
+            if (item.getUsersLiked().contains(bundle.getString("uid"))){
+                Toast.makeText(itemView.getContext(), "true switch", Toast.LENGTH_LONG).show();
+                buttonReputation.setImageResource(R.drawable.baseline_arrow_circle_up_24_clicked);
+                buttonReputation.setBackgroundResource(R.drawable.gradient);
+            }
 
             descriptionTextView.setText(item.getDescription());
             locationTextView.setText(item.getLocation());
@@ -153,6 +199,22 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyViewHolder> 
             // Update the reputation in Firestore
             DocumentReference postRef = firestore.collection("posts").document(documentId);
             postRef.update("reputation", newReputation);
+        }
+
+        public String formatDuration(long seconds) {
+            long minutes = seconds / 60;
+            long hours = minutes / 60;
+            long days = hours / 24;
+
+            if (days > 0) {
+                return days + "d ago";
+            } else if (hours > 0) {
+                return hours + "h ago";
+            } else if (minutes > 0) {
+                return minutes + "min ago";
+            } else {
+                return seconds + "s ago";
+            }
         }
     }
 

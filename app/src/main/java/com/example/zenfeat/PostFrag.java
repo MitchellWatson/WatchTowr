@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -23,6 +24,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -94,7 +96,7 @@ public class PostFrag extends Fragment {
             String location = ((TextInputEditText)rootview.findViewById(R.id.location)).getText().toString();
             List<String> usersLiked = new ArrayList<String>();
             db.collection("posts")
-                    .add(new Post(company, description, position, location, url, 0, poster, home.bundle.getString("occupation"), userId, LocalDateTime.now().toString(), usersLiked))
+                    .add(new Post(company, description, position, location, url, 0, poster, home.bundle.getString("occupation"), userId, Timestamp.now(), usersLiked))
                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {

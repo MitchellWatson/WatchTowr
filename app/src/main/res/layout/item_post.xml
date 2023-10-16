@@ -8,8 +8,9 @@
     android:layout_margin="8dp"
     android:clickable="true"
     android:focusable="true"
-    app:cardCornerRadius="4dp"
-    app:cardElevation="4dp">
+    app:cardCornerRadius="15dp"
+    app:cardBackgroundColor="@color/light_gray"
+    app:cardElevation="6dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -39,19 +40,22 @@
             android:id="@+id/positionTextView"
             android:layout_width="wrap_content"
             android:textSize="16sp"
+            android:layout_marginTop="5sp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/companyTextView"
+            android:drawablePadding="5sp"
             android:drawableLeft="@drawable/baseline_business_center_24"
             android:text="Position" />
 
-        <Button
+
+        <ImageView
             android:id="@+id/buttonReputation"
-            android:layout_width="54dp"
-            android:layout_height="wrap_content"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="16dp"
             android:layout_toLeftOf="@id/reputationTextView"
-            android:text="Up" />
+            app:srcCompat="@drawable/baseline_arrow_circle_up_24" />
 
         <TextView
             android:id="@+id/reputationTextView"
@@ -101,6 +105,8 @@
                 android:layout_toStartOf="@+id/buttonReputation"/>
 
         </LinearLayout>
+
+
 
 
     </RelativeLayout>

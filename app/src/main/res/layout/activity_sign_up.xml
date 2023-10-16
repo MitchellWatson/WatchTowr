@@ -7,22 +7,7 @@
     android:background="@drawable/background"
     tools:context=".SignUp"
     tools:layout_editor_absoluteX="0dp"
-    tools:layout_editor_absoluteY="43dp">
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/first"
-        android:layout_width="138dp"
-        android:layout_height="37dp"
-        android:background="@drawable/roundcorner1"
-        android:fontFamily="@font/palanquinregular"
-        android:hint="First Name"
-        android:paddingLeft="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.267"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.458" />
+    tools:layout_editor_absoluteY="2dp">
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/last"
@@ -37,52 +22,22 @@
         app:layout_constraintHorizontal_bias="0.758"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.458" />
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/age"
-        android:layout_width="138dp"
-        android:layout_height="37dp"
-        android:background="@drawable/roundcorner1"
-        android:fontFamily="@font/palanquinregular"
-        android:hint="Age"
-        android:paddingLeft="10dp"
-        android:inputType="number"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.267"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.528" />
+        app:layout_constraintVertical_bias="0.461" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/occupation"
-        android:layout_width="138dp"
-        android:layout_height="37dp"
+        android:layout_width="180dp"
+        android:layout_height="40dp"
         android:background="@drawable/roundcorner1"
         android:fontFamily="@font/palanquinregular"
         android:hint="Occupation"
         android:paddingLeft="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.758"
+        app:layout_constraintHorizontal_bias="0.714"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.528" />
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/email"
-        android:layout_width="265dp"
-        android:layout_height="41dp"
-        android:background="@drawable/roundcorner1"
-        android:fontFamily="@font/palanquinregular"
-        android:hint="Email"
-        android:paddingLeft="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.607" />
+        app:layout_constraintVertical_bias="0.529" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button"
@@ -108,14 +63,14 @@
         android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.265"
+        app:layout_constraintHorizontal_bias="0.212"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.372" />
+        app:layout_constraintVertical_bias="0.375" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/password"
-        android:layout_width="265dp"
+        android:layout_width="290dp"
         android:layout_height="41dp"
         android:background="@drawable/roundcorner1"
         android:fontFamily="@font/palanquinregular"
@@ -123,13 +78,60 @@
         android:paddingLeft="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.438"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.692" />
+        app:layout_constraintVertical_bias="0.691" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/email"
+        android:layout_width="291dp"
+        android:layout_height="41dp"
+        android:background="@drawable/roundcorner1"
+        android:fontFamily="@font/palanquinregular"
+        android:hint="Email"
+        android:paddingLeft="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.441"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.608" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/age"
+        android:layout_width="95dp"
+        android:layout_height="40dp"
+        android:background="@drawable/roundcorner1"
+        android:fontFamily="@font/palanquinregular"
+        android:hint="Age"
+        android:inputType="number"
+        android:paddingLeft="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.167"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.529" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/first"
+        android:layout_width="138dp"
+        android:layout_height="37dp"
+        android:background="@drawable/roundcorner1"
+        android:fontFamily="@font/palanquinregular"
+        android:hint="First Name"
+        android:paddingLeft="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.194"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.461" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/confirm"
-        android:layout_width="265dp"
+        android:layout_width="290dp"
         android:layout_height="41dp"
         android:background="@drawable/roundcorner1"
         android:fontFamily="@font/palanquinregular"
@@ -137,9 +139,10 @@
         android:paddingLeft="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.438"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.771" />
+        app:layout_constraintVertical_bias="0.768" />
 
     <TextView
         android:id="@+id/textView5"
