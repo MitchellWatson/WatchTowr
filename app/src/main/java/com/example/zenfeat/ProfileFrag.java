@@ -1,5 +1,6 @@
 package com.example.zenfeat;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -13,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -119,7 +121,6 @@ public class ProfileFrag extends Fragment {
         query.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        popUp.setText("Query success");
                         for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                             data.add(document);
                         }
@@ -161,6 +162,9 @@ public class ProfileFrag extends Fragment {
                                                  public void onSuccess(Void aVoid) {
                                                      popUp.setTextColor(getResources().getColor(R.color.success, null));
                                                      popUp.setText("User info update successful");
+                                                     InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                                                     imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+
                                                  }
                                              })
                                              .addOnFailureListener(new OnFailureListener() {
@@ -168,6 +172,9 @@ public class ProfileFrag extends Fragment {
                                                  public void onFailure(@NonNull Exception e) {
                                                      popUp.setTextColor(getResources().getColor(R.color.error, null));
                                                      popUp.setText("User info update unsuccessful");
+                                                     InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                                                     imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+
                                                  }
                                              });
                                  }

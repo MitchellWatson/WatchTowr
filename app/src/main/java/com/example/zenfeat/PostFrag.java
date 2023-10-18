@@ -1,5 +1,6 @@
 package com.example.zenfeat;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -9,9 +10,12 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
@@ -95,12 +99,26 @@ public class PostFrag extends Fragment {
             String description = ((TextInputEditText)rootview.findViewById(R.id.description)).getText().toString();
             String location = ((TextInputEditText)rootview.findViewById(R.id.location)).getText().toString();
             List<String> usersLiked = new ArrayList<String>();
+            TextView popUp = rootview.findViewById(R.id.postPopUp);
             db.collection("posts")
                     .add(new Post(company, description, position, location, url, 0, poster, home.bundle.getString("occupation"), userId, Timestamp.now(), usersLiked))
                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
                             // Document successfully added
+                            popUp.setTextColor(getResources().getColor(R.color.success, null));
+                            popUp.setText("Post successfully created");
+                            InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            popUp.setTextColor(getResources().getColor(R.color.error, null));
+                            popUp.setText("Post creation unsuccessful");
+                            InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                         }
                     });
         });

@@ -1,5 +1,6 @@
 package com.example.zenfeat;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -104,6 +106,9 @@ public class SearchFrag extends Fragment {
 
                 Query query = db.collection("posts")
                         .whereEqualTo("position", textIntput);
+
+                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
 
 
                 query.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
