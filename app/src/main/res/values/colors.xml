@@ -11,6 +11,8 @@
     <color name="mid_blue">#0B40FF</color>
     <color name="light_blue">#60BCFF</color>
     <color name="dark_blue">#0026AD</color>
-    <color name="light_gray">#FBFBFB</color>
+    <color name="text_color">#4E4E4E</color>
+    <color name="light_gray">#FDFDFD</color>
+    <color name="error">#F44336</color>
     <color name="grey">#4E4E4E</color>
 </resources>

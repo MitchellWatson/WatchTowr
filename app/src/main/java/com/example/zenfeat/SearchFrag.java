@@ -118,7 +118,6 @@ public class SearchFrag extends Fragment {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         // Handle the error
-                        Toast.makeText(getContext(), "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
             }

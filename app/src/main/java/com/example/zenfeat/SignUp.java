@@ -80,18 +80,22 @@ public class SignUp extends AppCompatActivity {
         String ageString = age.getText().toString();
         String occupationString = occupation.getText().toString();
 
+        TextView error = (TextView) findViewById(R.id.errorView);
+
         if (firstname.isEmpty()){
-            Toast.makeText(getApplicationContext(),"first",Toast.LENGTH_LONG).show();
+            error.setText("Please fill in First Name");
         } else if (lastname.isEmpty()) {
-            Toast.makeText(getApplicationContext(),"long",Toast.LENGTH_LONG).show();
+            error.setText("Please fill in Last Name");
         } else if (passwordString.isEmpty() || confirmString.isEmpty() || passwordString.compareTo(confirmString) !=0){
-            Toast.makeText(getApplicationContext(),"password",Toast.LENGTH_LONG).show();
+            error.setText("Passwords must match");
+        } else if (passwordString.length() < 8){
+            error.setText("Password must be at least 8 characters");
         } else if (emailString.isEmpty()) {
-            Toast.makeText(getApplicationContext(),"email",Toast.LENGTH_LONG).show();
+            error.setText("Please fill in Email");
         }  else if (ageString.isEmpty()){
-            Toast.makeText(getApplicationContext(),"age",Toast.LENGTH_LONG).show();
+            error.setText("Please fill in Age");
         } else if (occupationString.isEmpty()) {
-            Toast.makeText(getApplicationContext(),"occupation",Toast.LENGTH_LONG).show();
+            error.setText("Please fill in Occupation");
         } else {
             mAuth.createUserWithEmailAndPassword(emailString, passwordString)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -99,7 +103,6 @@ public class SignUp extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 // Sign in success, update UI with the signed-in user's information
-//                                Toast.makeText(getApplicationContext(),"login",Toast.LENGTH_LONG).show();
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 String userId = user.getUid();
                                 User newUser = new User(userId, firstname, lastname, ageString, occupationString, emailString);
@@ -108,7 +111,6 @@ public class SignUp extends AppCompatActivity {
                                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void aVoid) {
-                                                Toast.makeText(getApplicationContext(),"success",Toast.LENGTH_LONG).show();
 
                                                 Intent intent = new Intent(SignUp.this, Home.class);
                                                 Bundle bundle = new Bundle();
@@ -125,7 +127,7 @@ public class SignUp extends AppCompatActivity {
                                         });
                             } else {
                                 // If sign in fails, display a message to the user.
-                                Toast.makeText(getApplicationContext(),"fail",Toast.LENGTH_LONG).show();
+                                error.setText("Email already in use");
                             }
                         }
                     });        }

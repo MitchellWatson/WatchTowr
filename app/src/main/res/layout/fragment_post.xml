@@ -1,110 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PostFrag">
+    tools:context=".PostFrag"
+    tools:layout_editor_absoluteX="39dp"
+    tools:layout_editor_absoluteY="5dp"
+    android:layout_margin="15dp">
 
     <!-- TODO: Update blank fragment layout -->
+
     <TextView
-        android:layout_width="217dp"
-        android:layout_height="71dp"
-        android:text="Post"
+        android:layout_width="300dp"
+        android:layout_height="42dp"
+        android:fontFamily="@font/palanquinbold"
+        android:text="Create Job Alert"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.082"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.024" />
+        android:textColor="@color/text_color"
+        android:id="@+id/jobAlert"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="10dp"
+        />
+
+    <ImageView
+        android:id="@+id/company_icon"
+        android:layout_width="37dp"
+        android:layout_height="37dp"
+        android:layout_marginBottom="10dp"
+        app:srcCompat="@drawable/baseline_store_24"
+        android:layout_below="@+id/jobAlert"/>
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/company"
         android:layout_width="281dp"
-        android:layout_height="44dp"
-        android:background="@drawable/roundcorner1"
-        android:fontFamily="@font/palanquinregular"
+        android:layout_height="37dp"
+        android:layout_below="@id/jobAlert"
+        android:layout_toRightOf="@id/company_icon"
+        android:background="@drawable/post_input"
+        android:fontFamily="@font/palanquinmedium"
         android:hint="Company"
-        android:paddingLeft="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.123"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.168" />
+        android:paddingLeft="10dp" />
+
+    <ImageView
+        android:id="@+id/position_icon"
+        android:layout_width="37dp"
+        android:layout_height="37dp"
+        android:layout_marginBottom="10dp"
+        app:srcCompat="@drawable/baseline_business_center_24"
+        android:layout_below="@+id/company_icon"/>
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/position"
         android:layout_width="281dp"
-        android:layout_height="44dp"
-        android:background="@drawable/roundcorner1"
-        android:fontFamily="@font/palanquinregular"
+        android:layout_height="37dp"
+        android:background="@drawable/post_input"
+        android:fontFamily="@font/palanquinmedium"
         android:hint="Position"
         android:paddingLeft="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.123"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.256" />
+        android:layout_below="@id/company_icon"
+        android:layout_toRightOf="@id/position_icon"/>
+
+    <ImageView
+        android:id="@+id/location_icon"
+        android:layout_width="37dp"
+        android:layout_height="37dp"
+        android:layout_marginBottom="10dp"
+        app:srcCompat="@drawable/baseline_location_on_24"
+        android:layout_below="@+id/position_icon"/>
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/location"
         android:layout_width="281dp"
-        android:layout_height="44dp"
-        android:background="@drawable/roundcorner1"
-        android:fontFamily="@font/palanquinregular"
+        android:layout_height="37dp"
+        android:background="@drawable/post_input"
+        android:fontFamily="@font/palanquinmedium"
         android:hint="Location"
         android:paddingLeft="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.123"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.344" />
+        android:layout_below="@id/position_icon"
+        android:layout_toRightOf="@id/location_icon"/>
+
+    <ImageView
+        android:id="@+id/link_icon"
+        android:layout_width="37dp"
+        android:layout_height="37dp"
+        android:layout_marginBottom="10dp"
+        app:srcCompat="@drawable/baseline_link_24"
+        android:layout_below="@+id/location_icon"/>
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/url"
         android:layout_width="281dp"
-        android:layout_height="44dp"
-        android:background="@drawable/roundcorner1"
-        android:fontFamily="@font/palanquinregular"
-        android:hint="Link To Posting"
+        android:layout_height="37dp"
+        android:background="@drawable/post_input"
+        android:fontFamily="@font/palanquinmedium"
+        android:hint="Job Link/Source"
         android:paddingLeft="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.123"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.433" />
+        android:layout_below="@id/location_icon"
+        android:layout_toRightOf="@id/link_icon"/>
+
+    <ImageView
+        android:id="@+id/description_icon"
+        android:layout_width="37dp"
+        android:layout_height="37dp"
+        android:layout_marginBottom="10dp"
+        app:srcCompat="@drawable/baseline_description_24"
+        android:layout_below="@+id/link_icon"/>
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/description"
         android:layout_width="281dp"
-        android:layout_height="44dp"
-        android:background="@drawable/roundcorner1"
-        android:fontFamily="@font/palanquinregular"
+        android:layout_height="100dp"
+        android:background="@drawable/post_input"
+        android:fontFamily="@font/palanquinmedium"
         android:hint="Description"
         android:paddingLeft="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.123"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.526" />
+        android:inputType="textMultiLine"
+        android:layout_below="@id/link_icon"
+        android:layout_marginBottom="10dp"
+        android:layout_toRightOf="@id/description_icon"/>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/submit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Submit"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.625" />
+        android:layout_width="97dp"
+        android:layout_height="51dp"
+        android:layout_below="@id/description"
+        android:layout_alignEnd="@id/description"
+        android:background="@drawable/post_img"
+        android:textColor="@color/white" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</RelativeLayout>

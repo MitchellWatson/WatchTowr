@@ -4,33 +4,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SearchFrag"
-    >
+    tools:context=".SearchFrag">
 
     <!-- TODO: Update blank fragment layout -->
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/searchText"
-        android:layout_width="281dp"
-        android:layout_height="44dp"
-        android:background="@drawable/roundcorner1"
-        android:fontFamily="@font/palanquinregular"
-        android:hint="Company"
-        android:paddingLeft="10dp"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="20dp"
-        android:layout_marginRight="20dp"/>
 
-    <Button
-        android:id="@+id/searchButton"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/searchLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/searchText"
-        android:text="Search" />
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_alignParentStart="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/searchText"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/post_input"
+            android:fontFamily="@font/palanquinmedium"
+            android:hint="Position Title"
+            android:paddingLeft="10dp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/searchButton"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            android:layout_marginLeft="10dp"
+            android:fontFamily="@font/palanquinbold"
+            android:background="@drawable/search_button"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="Search" />
+
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/searchrecycler"
         android:layout_width="409dp"
         android:layout_height="628dp"
-        android:layout_below="@id/searchText"/>
+        android:layout_below="@id/searchLayout" />
 
 </RelativeLayout>

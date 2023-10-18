@@ -6,15 +6,17 @@
         android:layout_height="wrap_content"
         android:icon="@drawable/baseline_home_24"
         android:id="@+id/homenavbar"
-        android:title="Home" />
+        android:title="" />
     <item
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:icon="@drawable/baseline_add_24"
         android:id="@+id/postnavbar"
-        android:title="Post" />
+        android:title=""/>
     <item
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:icon="@drawable/baseline_person_24"
         android:id="@+id/profilenavbar"
-        android:title="Profile" />
+        android:title=""/>
 </menu>

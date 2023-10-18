@@ -98,7 +98,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyViewHolder> 
                         public void onSuccess(DocumentSnapshot documentSnapshot) {
                             if (documentSnapshot.exists()) {
                                 Post card = documentSnapshot.toObject(Post.class);
-                                    Toast.makeText(itemView.getContext(), "" + card.getUsersLiked().contains(bundle.getString("uid")), Toast.LENGTH_LONG).show();
                                     // Check if the current user has already liked the card
                                     if (!card.getUsersLiked().contains(bundle.getString("uid"))) {
                                         // User hasn't liked the card, so update the database
@@ -181,7 +180,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyViewHolder> 
 
 
             if (item.getUsersLiked().contains(bundle.getString("uid"))){
-                Toast.makeText(itemView.getContext(), "true switch", Toast.LENGTH_LONG).show();
                 buttonReputation.setImageResource(R.drawable.baseline_arrow_circle_up_24_clicked);
                 buttonReputation.setBackgroundResource(R.drawable.gradient);
             }

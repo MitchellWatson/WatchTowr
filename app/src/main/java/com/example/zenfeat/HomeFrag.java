@@ -84,8 +84,6 @@ public class HomeFrag extends Fragment {
 
         String input = "Hello, "+home.bundle.getString("first");
 
-        Toast.makeText(getContext(), input, Toast.LENGTH_LONG).show();
-
         textView.setText(input);
 
         BottomNavigationView navbar = rootview.findViewById(R.id.navbar);

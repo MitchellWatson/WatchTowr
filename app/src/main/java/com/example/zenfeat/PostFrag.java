@@ -101,7 +101,6 @@ public class PostFrag extends Fragment {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
                             // Document successfully added
-                            Toast.makeText(getContext(), "success", Toast.LENGTH_LONG).show();
                         }
                     });
         });
