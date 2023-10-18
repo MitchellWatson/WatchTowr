@@ -46,4 +46,30 @@ public class User {
     public String getEmail() {
         return email;
     }
+
+    // Setters for all properties
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public void setOccupation(String occupation) {
+        this.occupation = occupation;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }
