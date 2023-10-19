@@ -131,7 +131,6 @@ public class ProfileFrag extends Fragment {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         // Handle the failure, e.g., show an error message
-                        Toast.makeText(getActivity(), ""+e, Toast.LENGTH_LONG).show();
                         Log.e("profile", ""+e);
                     }
                 });

@@ -59,10 +59,12 @@ public class MainActivity extends AppCompatActivity {
         passwordString = password.getText().toString();
         emailString = email.getText().toString();
 
+        TextView error = findViewById(R.id.errorMsg);
+
         if (emailString.isEmpty()){
-            Toast.makeText(getApplicationContext(),"first",Toast.LENGTH_LONG).show();
+            error.setText("Please provide email");
         } else if (passwordString.isEmpty()) {
-            Toast.makeText(getApplicationContext(), "password", Toast.LENGTH_LONG).show();
+            error.setText("Please provide password");
         } else {
             mAuth.signInWithEmailAndPassword(emailString, passwordString).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
@@ -75,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
                         DocumentReference userRef = db.collection("users").document(userId);
 
                         Bundle bundle = new Bundle();
+
 
                         userRef.get()
                                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -98,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                     } else {
-                        Toast.makeText(getApplicationContext(), "fail", Toast.LENGTH_LONG).show();
+                        error.setText("Invalid login");
                     }
                 }
             });

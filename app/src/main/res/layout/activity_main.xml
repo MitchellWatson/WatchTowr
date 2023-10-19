@@ -97,5 +97,20 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.939" />
 
+    <TextView
+        android:id="@+id/errorMsg"
+        android:layout_width="150dp"
+        android:layout_height="70dp"
+        android:fontFamily="@font/palanquinbold"
+        android:text=""
+        android:textColor="@color/error"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.279"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.732" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
